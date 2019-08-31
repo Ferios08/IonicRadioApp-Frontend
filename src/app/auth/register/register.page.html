@@ -1,0 +1,99 @@
+<ion-content color="primary">
+  <form [formGroup]="clientForm" (ngSubmit)="onSubmitForm()">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <h3>&nbsp;&nbsp;&nbsp;New Client Account</h3>
+          </div>
+          <div padding>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-input name="firstname" type="text" placeholder="First Name" formControlName="firstName">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-input name="lastname" type="text" placeholder="Last Name" formControlName="lastName"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-input name="cin" type="Number" placeholder="Cin" formControlName="cin"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-input name="email" type="email" placeholder="your@email.com" formControlName="email"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-input name="password" type="password" placeholder="Password" formControlName="pass"></ion-input>
+                  <i class="fas fa-question-circle" (click)="passHelp()"></i>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-input name="confirm" type="password" placeholder="Password again" formControlName="passConf">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label>Birthday</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-input name="birthday" type="date" placeholder="Birthday" formControlName="birthday"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-input name="address" type="text" placeholder="Address" formControlName="address"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-input name="phoneNumber" type="Number" placeholder="Phone Number" formControlName="phone">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </div>
+          <div padding>
+            <ion-row>
+              <ion-col>
+                <ion-button size="large" type="submit" [disabled]="clientForm.invalid" expand="block">Register
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+  <ion-fab vertical="top" horizontal="start" slot="fixed" routerLink="/login">
+    <ion-fab-button>
+      <ion-icon name="arrow-dropleft"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
