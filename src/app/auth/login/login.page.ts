@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -14,16 +15,19 @@ export class LoginPage implements OnInit {
   signedInId: number;
   loginForm: FormGroup;
   emailExist: boolean;
-  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-  passPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$";
+  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
+  passPattern = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$';
   user: any = {
-    'email': '',
-    'password': ''
+    email: '',
+    password: ''
   };
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private AuthService: AuthService
+    private authService: AuthService,
+    public alertController: AlertController,
+    private  storage: Storage
+
   ) { }
 
   ngOnInit() {
@@ -44,26 +48,33 @@ export class LoginPage implements OnInit {
       email : formValue.email,
       password: formValue.pass
     };
-    console.log(this.user);
-    try{
-    this.AuthService.login(this.user).subscribe(res => {
-      console.log(res);
+    //console.log(this.user);
+
+    this.authService.login(this.user).subscribe(res => {
+       //console.log(res);
       if (res) {
         this.router.navigate(['/home']);
+        this.storage.set('name', res.name);
       }
-    }
+    },  err => this.presentAlert()
       );
-    }
-    catch(error){
-      console.log(error.HttpErrorResponse.error.error);
-    }
+
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Wrong Email / Password',
+      message: 'Please try again.',
+      animated: true,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 
-
-
-  onsubmit(){
-    this.login()
+  onsubmit() {
+    this.login();
   }
 
 }
