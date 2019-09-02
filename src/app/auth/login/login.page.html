@@ -21,7 +21,7 @@
               </div>
 
               <div>
-                <ion-button type="submit" routerLink="/home" size="small" expand="block">Login</ion-button>
+                <ion-button type="submit" [disabled]="loginForm.invalid"  size="small" expand="block">Login</ion-button>
               </div>
             </form>
             <br>

@@ -13,7 +13,7 @@ import { AuthResponse } from  './auth-response';
   providedIn: 'root'
 })
 export class AuthService {
-  AUTH_SERVER_ADDRESS  =  'http://localhost:3000';
+  AUTH_SERVER_ADDRESS  =  'http://localhost:1338';
 authSubject  =  new  BehaviorSubject(false);
 
   constructor(
@@ -22,11 +22,10 @@ authSubject  =  new  BehaviorSubject(false);
   ) { }
 
   register(user: User): Observable<AuthResponse> {
-    return this.httpClient.post<AuthResponse>(`${this.AUTH_SERVER_ADDRESS}/register`, user).pipe(
+    return this.httpClient.post<AuthResponse>(`${this.AUTH_SERVER_ADDRESS}/users`, user).pipe(
       tap(async (res: AuthResponse ) => {
-
         if (res.user) {
-          await this.storage.set("ACCESS_TOKEN", res.user.access_token);
+          await this.storage.set("ACCESS_TOKEN", res.user.token);
           await this.storage.set("EXPIRES_IN", res.user.expires_in);
           this.authSubject.next(true);
         }
@@ -37,11 +36,11 @@ authSubject  =  new  BehaviorSubject(false);
 
 
   login(user: User): Observable<AuthResponse> {
-    return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}/login`, user).pipe(
+    return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}/auth/users`, user).pipe(
       tap(async (res: AuthResponse) => {
 
         if (res.user) {
-          await this.storage.set("ACCESS_TOKEN", res.user.access_token);
+          await this.storage.set("ACCESS_TOKEN", res.user.token);
           await this.storage.set("EXPIRES_IN", res.user.expires_in);
           this.authSubject.next(true);
         }
