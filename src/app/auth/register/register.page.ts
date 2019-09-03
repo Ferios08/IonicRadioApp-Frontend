@@ -3,16 +3,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { User } from '../user';
 import { Storage } from '@ionic/storage';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-
   clientForm: FormGroup;
   emailExist: boolean;
   maxId: any;
@@ -96,6 +93,7 @@ export class RegisterPage implements OnInit {
     this.authService.register(this.user).subscribe(res => {
       // console.log(res);
       if (res) {
+        this.storage.set('user', JSON.stringify(res));
         this.storage.set('name', this.user.name);
         this.router.navigate(['/home']);
       }

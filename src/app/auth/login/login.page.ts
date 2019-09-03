@@ -53,8 +53,9 @@ export class LoginPage implements OnInit {
     this.authService.login(this.user).subscribe(res => {
        // console.log(res);
       if (res) {
-        this.storage.set('name', res.name);
-        this.router.navigate(['/home']);
+        this.storage.set('user',res);
+        this.storage.set('name', res.name)
+        .then(() => this.router.navigate(['/home']));
       }
     },  err => {
       this.alert(err.error.error);
