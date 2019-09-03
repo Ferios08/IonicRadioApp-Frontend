@@ -20,31 +20,26 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-    private storage: Storage,
-    private authService: AuthService,
+    private storage: Storage
   ) {
     this.initializeApp();
-    console.log("status" + this.storage.get('LOGGED_IN'));
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      console.log(this.storage.get('LOGGED_IN'));
     });
 
 
     this.storage.get('user').then((val) => {
-      if (val)
-{
-      if ( val.expires_in > 60) 
-      {
-        this.router.navigate(['/home']);
+      console.log("this is val"+ val)
+      if (val != null) {
+          this.router.navigate(['/home']);
         } else {
           this.router.navigate(['/login']);
         }
-      }
+      
 
     });
   }
