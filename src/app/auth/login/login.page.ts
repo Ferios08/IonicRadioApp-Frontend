@@ -48,22 +48,24 @@ export class LoginPage implements OnInit {
       email : formValue.email,
       password: formValue.pass
     };
-    //console.log(this.user);
+    // console.log(this.user);
 
     this.authService.login(this.user).subscribe(res => {
-       //console.log(res);
+       // console.log(res);
       if (res) {
-        this.router.navigate(['/home']);
         this.storage.set('name', res.name);
+        this.router.navigate(['/home']);
       }
-    },  err => this.presentAlert()
+    },  err => {
+      this.alert(err.error.error);
+    }
       );
 
   }
 
-  async presentAlert() {
+  async alert(msg) {
     const alert = await this.alertController.create({
-      header: 'Wrong Email / Password',
+      header: msg,
       message: 'Please try again.',
       animated: true,
       buttons: ['OK']
@@ -73,7 +75,7 @@ export class LoginPage implements OnInit {
   }
 
 
-  onsubmit() {
+  onSubmitForm() {
     this.login();
   }
 
