@@ -33,13 +33,11 @@ export class AppComponent {
 
 
     this.storage.get('user').then((val) => {
-      console.log("this is val"+ val)
       if (val != null) {
           this.router.navigate(['/home']);
         } else {
           this.router.navigate(['/login']);
         }
-      
 
     });
   }
