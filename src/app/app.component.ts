@@ -20,7 +20,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-    private storage: Storage
+    private storage: Storage,
+    private authService: AuthService,
   ) {
     this.initializeApp();
   }
@@ -34,10 +35,12 @@ export class AppComponent {
 
     this.storage.get('user').then((val) => {
       if (val != null) {
-          this.router.navigate(['/home']);
-        } else {
-          this.router.navigate(['/login']);
-        }
+        this.authService.checkIn(val.id);
+        console.log(val.id)
+        this.router.navigate(['/home/profile']);
+      } else {
+        this.router.navigate(['/login']);
+      }
 
     });
   }

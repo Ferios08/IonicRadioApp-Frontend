@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      {{pagename}}
+      {{pagename}} 
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -17,7 +17,7 @@
   <ion-content>
     <ion-list *ngFor="let pages of navigate">
       <ion-menu-toggle auto-hide="true">
-        <ion-item [routerLink]="pages.url" routerDirection="forward" (click)="changename(pages.title)">
+        <ion-item [routerLink]="pages.url"  (click)="changename(pages.title)">
           <ion-icon [name]="pages.icon" slot="start"></ion-icon>
           {{pages.title}}
         </ion-item>
@@ -25,12 +25,15 @@
     </ion-list>
     <ion-list>
       <ion-menu-toggle auto-hide="true">
-        <ion-item (click)="logout()" routerDirection="forward" [routerLink]="">
+        <ion-item (click)="logout()"  href="">
           <ion-icon  name="log-out" slot="start"></ion-icon>
           Log out
         </ion-item>
       </ion-menu-toggle>
     </ion-list>
+    <p style="position: absolute; bottom: 0px; width: 100%">
+        <ion-icon  name="eye" slot="start"></ion-icon> Last Login: {{user.lastvu  | date: 'hh:mm dd/MM/yyyy'}} 
+    </p>
   </ion-content>
 </ion-menu>
 <ion-router-outlet id="content1"></ion-router-outlet>

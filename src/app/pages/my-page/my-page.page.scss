@@ -1,0 +1,60 @@
+#id {
+    margin-bottom: -20px;
+    h6 {
+      float: left;
+      margin-left: 7%;
+      color: rgb(116, 116, 116);
+      font-weight: bold;
+      font-size: 13px;
+    }
+  }
+  
+  #solde {
+    margin-left: 50%;
+    margin-bottom: -20px;
+    color: gold;
+    font-weight: bold;
+  
+    h6 {
+      font-size: 13px;
+    }
+  
+    i {
+      color: green;
+    }
+  }
+  
+  .map {
+    margin-bottom: 70px;
+  }
+  
+  #map {
+    width: 100%;
+    height: 300px;
+  }
+  
+  .edit {
+    max-width: 50px;
+  }
+  
+  .fa-user-check {
+    margin-top: 80px;
+  }
+  
+  .fa-exclamation-circle {
+    margin-top: 80px;
+  }
+  
+  ion-card-title {
+    font-size: 16px;
+  }
+  
+  .dot {
+    position: absolute;
+    height: 8px;
+    width: 8px;
+    background-color: red;
+    border-radius: 50%;
+    margin-top: -9px;
+  }
+  

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-row id="id">
+    <ion-col>
+      <h6></h6>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-card>
+    <ion-card-content>
+
+      <ion-row>
+        <ion-col align-self-center size-xs="4">
+          <ion-avatar>
+            <img [src]="user.avatar">
+          </ion-avatar>
+        </ion-col>
+
+        <ion-col size-xs="7">
+          <h1>{{user.name}} </h1>
+          <p>Address: {{user.town}}</p>
+        </ion-col>
+
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button (click)="checkin()" color="primary">Primary</ion-button>
+
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/add-movie">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+</ion-content>

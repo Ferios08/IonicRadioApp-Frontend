@@ -12,7 +12,13 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
   navigate: any;
-  user: any;
+  user = {
+    id: 0,
+    name: '',
+    email: '',
+    lastvu: '',
+    avatar: ''
+  };
   pagename: any;
 
 
@@ -26,17 +32,17 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    this.storage.get('name').then((val) => {
-      this.pagename = 'Hello ' + val;
-    });
-    this.loader(2000).then(() => {
+
+    this.loader(500).then(() => {
       this.storage.get('user').then((val) => {
+
         this.user = val;
-        console.log(this.user);
+        // console.log(this.user);
+        this.pagename = 'Hello ' + this.user.name;
       }).then(() => this.loadingController.dismiss());
     });
 
-    console.log(this.user);
+    
   }
 
   async loader(secs) {
@@ -49,7 +55,7 @@ export class HomePage implements OnInit {
   }
   logout() {
     this.authService.logout();
-    this.loader(1000);
+    this.loader(500);
     this.router.navigate(['/login']);
   }
 
@@ -58,17 +64,17 @@ export class HomePage implements OnInit {
       [
         {
           title: 'Home',
-          url: '/home',
+          url: '/home/profile',
           icon: 'home'
         },
         {
           title: 'Data',
-          url: 'data',
+          url: '/home/data',
           icon: 'analytics'
         },
         {
           title: 'Setting',
-          url: 'setting',
+          url: '/home/setting',
           icon: 'settings'
         },
 

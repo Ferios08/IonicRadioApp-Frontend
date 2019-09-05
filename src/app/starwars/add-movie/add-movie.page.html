@@ -1,0 +1,56 @@
+<ion-content>
+
+  <form [formGroup]="filmForm" (ngSubmit)="onSubmitForm()">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <h3>&nbsp;&nbsp;&nbsp;Add  a new Movie</h3>
+          </div>
+          <div padding>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-input name="name" type="text" placeholder="Name" formControlName="name">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+             
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                      <ion-input name="year" type="number" placeholder="Year" formControlName="year"></ion-input>
+                    </ion-item>
+                  </ion-col>
+  
+                <ion-col>
+                  
+                  <ion-item>
+                    <ion-input name="duration" type="number" placeholder="Duration" formControlName="duration"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+    
+        
+          </div>
+          <div padding>
+            <ion-row>
+              <ion-col>
+                <ion-button size="large" type="submit" [disabled]="filmForm.invalid" expand="block">Add
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+  <ion-fab vertical="top" horizontal="start" slot="fixed" routerLink="/home/profile">
+    <ion-fab-button>
+      <ion-icon name="arrow-dropleft"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

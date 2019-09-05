@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     public alertController: AlertController,
-    private  storage: Storage
+    private storage: Storage
 
   ) { }
 
@@ -37,7 +37,7 @@ export class LoginPage implements OnInit {
   initForm() {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-      pass: ['', ],
+      pass: ['',],
       // [Validators.required, Validators.minLength(6), Validators.pattern(this.passPattern)]
     });
   }
@@ -45,22 +45,22 @@ export class LoginPage implements OnInit {
   login() {
     const formValue = this.loginForm.value;
     this.user = {
-      email : formValue.email,
+      email: formValue.email,
       password: formValue.pass
     };
     // console.log(this.user);
 
     this.authService.login(this.user).subscribe(res => {
-       // console.log(res);
+      // console.log(res);
       if (res) {
-        this.storage.set('user',res);
+        this.storage.set('user', res);
         this.storage.set('name', res.name)
-        .then(() => this.router.navigate(['/home']));
+          .then(() => this.router.navigate(['/home']));
       }
-    },  err => {
+    }, err => {
       this.alert(err.error.error);
     }
-      );
+    );
 
   }
 

@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
 import { SettingPage } from '../pages/setting/setting.page';
 import { AllDataPage } from '../pages/all-data/all-data.page';
+import { MyPagePage } from '../pages/my-page/my-page.page';
 
 
 @NgModule({
@@ -23,9 +24,12 @@ import { AllDataPage } from '../pages/all-data/all-data.page';
             component: AllDataPage
           },
           {
-
             path: 'setting',
             component: SettingPage
+          },
+          {
+            path: 'profile',
+            component: MyPagePage
           }
 
         ]
@@ -35,7 +39,8 @@ import { AllDataPage } from '../pages/all-data/all-data.page';
   declarations: [
     HomePage,
     SettingPage,
-    AllDataPage
+    AllDataPage,
+    MyPagePage
     ]
 })
 export class HomePageModule { }

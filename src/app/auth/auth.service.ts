@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 
@@ -44,15 +44,36 @@ export class AuthService {
           await this.storage.set('ACCESS_TOKEN', res.token);
           await this.storage.set('EXPIRES_IN', res.expires_in);
           this.authSubject.next(true);
+          this.checkIn(res.id);
+        }
+      })
+    );
+
+  }
+
+  checkIn(id): Observable<AuthResponse> {
+
+
+    const noww = new Date().getTime();
+    const newtime = {
+      lastvu: '2025-11-10'
+    };
+    console.log(noww);
+    return this.httpClient.put(`${this.AUTH_SERVER_ADDRESS}/users/check/:id`, newtime).pipe(
+      tap(async (res: AuthResponse) => {
+
+        if (res) {
+
+          console.log(res);
         }
       })
     );
   }
 
   async logout() {
+
     await this.storage.remove('ACCESS_TOKEN');
     await this.storage.remove('EXPIRES_IN');
-    await this.storage.remove('name');
     await this.storage.remove('user');
 
     this.authSubject.next(false);
