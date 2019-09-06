@@ -5,19 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MyPagePage } from './my-page.page';
-import { MoviePage } from 'src/app/starwars/movie/movie.page';
+import { MoviePage } from './movie.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: MyPagePage,
-    children: [
-      {
-        path: 'movie/:id',
-        component: MoviePage
-      }
-    ]
+    component: MoviePage
   }
 ];
 
@@ -28,6 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [MyPagePage,MoviePage]
+  declarations: [MoviePage]
 })
-export class MyPagePageModule {}
+export class MoviePageModule {}

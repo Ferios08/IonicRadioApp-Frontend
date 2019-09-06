@@ -27,11 +27,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     Storage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy,
      },
-     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    }
+     
   ],
   bootstrap: [AppComponent]
 })

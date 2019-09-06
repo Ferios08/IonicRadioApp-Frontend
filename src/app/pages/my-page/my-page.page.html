@@ -32,7 +32,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-button (click)="checkin()" color="primary">Primary</ion-button>
+
 
 
 
@@ -41,6 +41,18 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+
+  <ion-card *ngFor="let movie of movies"  routerLink="/home/profile/movie/{{movie.id}}">
+    <ion-card-header>
+      <ion-card-title>{{movie.name}} </ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+     <p>Published on : {{movie.year}}</p>
+     <p>Lasts {{movie.duration }}</p>
+    </ion-card-content>
+  </ion-card>
 
 
 

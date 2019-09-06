@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'all-data', loadChildren: './pages/all-data/all-data.module#AllDataPageModule' },
   { path: 'my-page', loadChildren: './pages/my-page/my-page.module#MyPagePageModule' },
   { path: 'add-movie', loadChildren: './starwars/add-movie/add-movie.module#AddMoviePageModule' },
+  { path: 'movie', loadChildren: './starwars/movie/movie.module#MoviePageModule' },
 
 
 ];

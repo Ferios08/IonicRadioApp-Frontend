@@ -35,12 +35,11 @@ export class HomePage implements OnInit {
 
     this.loader(500).then(() => {
       this.storage.get('user').then((val) => {
-
         this.user = val;
-        // console.log(this.user);
         this.pagename = 'Hello ' + this.user.name;
       }).then(() => this.loadingController.dismiss());
     });
+
 
     
   }
