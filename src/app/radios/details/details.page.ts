@@ -59,14 +59,14 @@ export class DetailsPage implements OnInit {
 
   favourite() {
     this.favouriteService.addToFav(this.station).then((res) => {
-      console.log("add " + this.station)
+      console.log('add ' + this.station);
       this.isFav = true;
       this.ngOnInit();
     });
   }
   unfavourite() {
     this.favouriteService.unfavourite(this.station).then(() => {
-      this.isFav = true;
+      this.isFav = false;
       this.ngOnInit();
     });
   }
