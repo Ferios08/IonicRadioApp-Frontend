@@ -55,7 +55,7 @@ export class LoginPage implements OnInit {
       if (res) {
         this.storage.set('user', res);
         this.storage.set('name', res.name)
-          .then(() => this.router.navigate(['/home']));
+          .then(() => this.router.navigate(['/home/profile']));
       }
     }, err => {
       this.alert(err.error.error);

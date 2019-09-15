@@ -74,4 +74,5 @@ export class AddMoviePage implements OnInit {
 
     await alert.present();
   }
+
 }

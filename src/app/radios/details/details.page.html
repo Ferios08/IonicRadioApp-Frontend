@@ -1,7 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{station.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
 <ion-content color="light" padding>
 
 
-  <ion-fab vertical="top" horizontal="start" slot="fixed" routerLink="/home/profile">
+  <ion-fab vertical="top" horizontal="start" slot="fixed" routerLink="/home/data">
     <ion-fab-button>
       <ion-icon name="arrow-dropleft"></ion-icon>
     </ion-fab-button>
@@ -10,16 +17,16 @@
 
 
   <ion-card id="id" vertical="bottom">
-    <ion-img id="pic" src="https://lumiere-a.akamaihd.net/v1/images/og-generic_02031d2b.png?region=0%2C0%2C1200%2C1200">
+    <ion-img id="pic" [src]="station.favicon">
     </ion-img>
     <ion-card-header>
-      <ion-card-title color="light">{{movie.name}} </ion-card-title>
+      <ion-card-title color="light">{{station.name}} </ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <p>Published on : {{movie.year}}</p>
-      <p>Lasts {{movie.duration }}</p>
-      <ion-button *ngIf="!isFav; else unfav" (click)="favourite()" color="primary">Add to favourite</ion-button>
+      <p>Website : {{station.homepage}}</p>
+      <p>Country {{station.country }}</p>
+       <ion-button *ngIf="!isFav; else unfav" (click)="favourite()" color="primary">Add to favourite</ion-button>
 
       <ng-template #unfav>
         <ion-button (click)="unfavourite()" color="primary">Delete favourite</ion-button>
@@ -29,6 +36,8 @@
       <ng-template #notfav>
           <ion-icon name="star-half"></ion-icon>
       </ng-template>
+      
     </ion-card-content>
   </ion-card>
+ 
 </ion-content>

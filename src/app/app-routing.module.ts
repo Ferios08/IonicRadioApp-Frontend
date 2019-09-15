@@ -9,9 +9,13 @@ const routes: Routes = [
   { path: 'login', loadChildren: './auth/login/login.module#LoginPageModule' },
   { path: 'setting', loadChildren: './pages/setting/setting.module#SettingPageModule' },
   { path: 'all-data', loadChildren: './pages/all-data/all-data.module#AllDataPageModule' },
-  { path: 'my-page', loadChildren: './pages/my-page/my-page.module#MyPagePageModule' },
+  { path: 'home', loadChildren: './pages/my-page/my-page.module#MyPagePageModule' },
   { path: 'add-movie', loadChildren: './starwars/add-movie/add-movie.module#AddMoviePageModule' },
-  { path: 'movie', loadChildren: './starwars/movie/movie.module#MoviePageModule' },
+  { path: 'movie/:id', loadChildren: './starwars/movie/movie.module#MoviePageModule' },
+  { path: 'search', loadChildren: './radios/search/search.module#SearchPageModule' },
+  { path: 'favourite', loadChildren: './radios/favourite/favourite.module#FavouritePageModule' },
+  { path: 'country', loadChildren: './radios/country/country.module#CountryPageModule' },
+  { path: 'details', loadChildren: './radios/details/details.module#DetailsPageModule' },
 
 
 ];

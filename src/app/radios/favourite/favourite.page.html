@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Favourite Stations</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngFor="let station of stations" (click)="getStationID(station)"  routerLink="/details">
+        <ion-card-header>
+          <ion-card-title>{{station.name}} </ion-card-title>
+        </ion-card-header>
+    
+        <ion-card-content>
+    
+        </ion-card-content>
+      </ion-card>
+
+</ion-content>
+<ion-fab vertical="top" horizontal="start" slot="fixed" routerLink="/home/data">
+  <ion-fab-button>
+    <ion-icon name="arrow-dropleft"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-title>Movies</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -26,6 +26,8 @@
         <ion-col size-xs="7">
           <h1>{{user.name}} </h1>
           <p>Address: {{user.town}}</p>
+          <div>Here you can add movies based on database.</div>
+          <div>Adding them to favurite is based on Ionic storage</div>
         </ion-col>
 
       </ion-row>
@@ -43,14 +45,14 @@
   </ion-fab>
 
 
-  <ion-card *ngFor="let movie of movies"  routerLink="/home/profile/movie/{{movie.id}}">
+  <ion-card *ngFor="let movie of movies"  (click)=" sendid(movie)">
     <ion-card-header>
       <ion-card-title>{{movie.name}} </ion-card-title>
     </ion-card-header>
-  
+
     <ion-card-content>
-     <p>Published on : {{movie.year}}</p>
-     <p>Lasts {{movie.duration }}</p>
+      <p>Published on : {{movie.year}}</p>
+      <p>Lasts {{movie.duration }}</p>
     </ion-card-content>
   </ion-card>
 

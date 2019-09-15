@@ -13,7 +13,8 @@ import { Movie } from '../models/movie';
   providedIn: 'root'
 })
 export class MoviesService {
-  AUTH_SERVER_ADDRESS = 'http://localhost:1338';
+  // AUTH_SERVER_ADDRESS = 'http://firas-chbiki.com:1338';
+   AUTH_SERVER_ADDRESS = 'http://localhost:1338';
   token = '';
   headers = new HttpHeaders({
     Authorization: `Bearer ${this.token}`
@@ -25,21 +26,22 @@ export class MoviesService {
   constructor(
     private httpClient: HttpClient,
     private storage: Storage
-  ) {  this.storage.get('ACCESS_TOKEN').then((val) => {
-    this.token = val;
-    console.log(this.token)
-  }).then(()=>{
-    this.headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token}`
-    });
+  ) {
+    this.storage.get('ACCESS_TOKEN').then((val) => {
+      this.token = val;
+    }).then(() => {
+      this.headers = new HttpHeaders({
+        Authorization: `Bearer ${this.token}`
+      });
 
-  }).then(()=>{
-    this.options = {
-      headers: this.headers
-    };
+    }).then(() => {
+      this.options = {
+        headers: this.headers
+      };
 
-  })
-  ;}
+    })
+      ;
+  }
 
   addMovie(movie: Movie): Observable<MovieResponse> {
     return this.httpClient.post<MovieResponse>(`${this.AUTH_SERVER_ADDRESS}/movies`, movie, this.options).pipe(
@@ -53,14 +55,26 @@ export class MoviesService {
   }
 
   Moviesbyuser(id): Observable<MovieResponse[]> {
-   
-
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.token}`
-    });
-    console.log(headers)
 
     return this.httpClient.get<MovieResponse[]>(`${this.AUTH_SERVER_ADDRESS}/movies/byuser/ ${id}`, this.options).pipe(
+      tap(async (res) => {
+        if (res) {
+
+        }
+      })
+
+    );
+  }
+
+
+  Moviebyid(id): Observable<MovieResponse> {
+
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`
+    });
+
+    return this.httpClient.get<MovieResponse>(`${this.AUTH_SERVER_ADDRESS}/movies/ ${id}`, this.options).pipe(
       tap(async (res) => {
         if (res) {
 

@@ -1,8 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Radio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-row id="id">
+    <ion-col>
+      <h6></h6>
+    </ion-col>
+  </ion-row>
 
 
-<ion-content>
-    <p>THIS IS THE DATA</p>
-    <p>THIS IS THE DATA</p>
-    <p>THIS IS THE DATA</p>
-    <p>THIS IS THE DATA</p>
+  <ion-card>
+    <ion-card-content>
+
+      <ion-row>
+        <ion-col align-self-center size-xs="4">
+          <ion-avatar>
+            <img [src]="user.avatar">
+          </ion-avatar>
+        </ion-col>
+
+        <ion-col size-xs="7">
+          <h1>{{user.name}} </h1>
+          <p>Address: {{user.town}}</p>
+          <div>Here you can search for radios based an external API.</div>
+          <div>Adding them to favourite is based on Ionic storage</div>
+        </ion-col>
+
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card  routerLink="/search">
+    <ion-card-header>
+      <ion-card-title> Search for Radios </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+    </ion-card-content>
+  </ion-card  >
+  <ion-card routerLink="/favourite" >
+      <ion-card-header>
+        <ion-card-title>My favourite Radios </ion-card-title>
+      </ion-card-header>
+  
+      <ion-card-content>
+  
+      </ion-card-content>
+    </ion-card>
+
+
+
+
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
 </ion-content>

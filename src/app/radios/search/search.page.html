@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Search for country</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngFor="let country of countries" (click)="getCountryName(country)" routerLink="/country">
+        <ion-card-header>
+          <ion-card-title>{{country.name}} </ion-card-title>
+        </ion-card-header>
+    
+        <ion-card-content>
+    
+        </ion-card-content>
+      </ion-card>
+
+</ion-content>
+<ion-fab vertical="top" horizontal="start" slot="fixed" routerLink="/home/data">
+  <ion-fab-button>
+    <ion-icon name="arrow-dropleft"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

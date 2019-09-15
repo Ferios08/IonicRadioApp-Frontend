@@ -3,6 +3,7 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { AuthService } from 'src/app/auth/auth.service';
 import { MoviesService } from 'src/app/services/movies.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-page',
@@ -32,6 +33,7 @@ export class MyPagePage implements OnInit {
     private authService: AuthService,
     private moviesService: MoviesService,
     public alertController: AlertController,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -41,7 +43,6 @@ export class MyPagePage implements OnInit {
         this.user = val;
         this.userid = val.id;
         this.getMyMovies(this.userid);
-
       }).then(() => this.loadingController.dismiss());
     });
 
@@ -61,6 +62,7 @@ export class MyPagePage implements OnInit {
     await loading.present();
   }
   doRefresh(event) {
+    this.ngOnInit();
 
     setTimeout(() => {
 
@@ -71,9 +73,7 @@ export class MyPagePage implements OnInit {
 
   getMyMovies( id){
     this.moviesService.Moviesbyuser(this.userid).subscribe(res => {
-      console.log(this.userid);
       if (res) {
-        console.log(res);
         this.movies = res;
       }
     }, err => {
@@ -91,5 +91,12 @@ export class MyPagePage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  sendid(movie) {
+    this.storage.set('movieid', movie.id).then(()=>{
+      this.router.navigateByUrl(`/movie/${movie.id}`)
+    })
+
   }
 }

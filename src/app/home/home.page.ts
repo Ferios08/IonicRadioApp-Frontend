@@ -20,6 +20,7 @@ export class HomePage implements OnInit {
     avatar: ''
   };
   pagename: any;
+  now = new Date();
 
 
   constructor(
@@ -32,8 +33,9 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
+    this.now = new Date();
 
-    this.loader(500).then(() => {
+    this.loader(1000).then(() => {
       this.storage.get('user').then((val) => {
         this.user = val;
         this.pagename = 'Hello ' + this.user.name;
@@ -62,12 +64,12 @@ export class HomePage implements OnInit {
     this.navigate =
       [
         {
-          title: 'Home',
+          title: 'Movies',
           url: '/home/profile',
           icon: 'home'
         },
         {
-          title: 'Data',
+          title: 'Radios',
           url: '/home/data',
           icon: 'analytics'
         },

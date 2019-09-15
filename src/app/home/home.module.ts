@@ -7,6 +7,7 @@ import { HomePage } from './home.page';
 import { SettingPage } from '../pages/setting/setting.page';
 import { AllDataPage } from '../pages/all-data/all-data.page';
 import { MyPagePage } from '../pages/my-page/my-page.page';
+import { MoviePage } from '../starwars/movie/movie.page';
 
 
 @NgModule({
@@ -29,8 +30,9 @@ import { MyPagePage } from '../pages/my-page/my-page.page';
           },
           {
             path: 'profile',
-            component: MyPagePage
-          }
+            component: MyPagePage,
+          },
+          
 
         ]
       }
@@ -40,7 +42,8 @@ import { MyPagePage } from '../pages/my-page/my-page.page';
     HomePage,
     SettingPage,
     AllDataPage,
-    MyPagePage
+    MyPagePage,
+    
     ]
 })
 export class HomePageModule { }

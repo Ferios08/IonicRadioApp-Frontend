@@ -1,0 +1,37 @@
+import { Component, OnInit } from '@angular/core';
+import { LoadingController, AlertController } from '@ionic/angular';
+import { RadioService } from 'src/app/services/radio.service';
+import { Router } from '@angular/router';
+import { FavRadiosService } from 'src/app/services/fav-radios.service';
+import { Storage } from '@ionic/storage';
+
+@Component({
+  selector: 'app-favourite',
+  templateUrl: './favourite.page.html',
+  styleUrls: ['./favourite.page.scss'],
+})
+export class FavouritePage implements OnInit {
+stations: any;
+  constructor(
+    private storage: Storage,
+    public loadingController: LoadingController,
+    private radiosService: RadioService,
+    public alertController: AlertController,
+    private router: Router,
+    private favouriteService: FavRadiosService,
+
+  ) { }
+
+  ngOnInit() {
+    this.favouriteService.getAllFav().then((res) => {
+      this.stations = res;
+      console.log(this.stations);
+    });
+  }
+ 
+  getStationID(station) {
+    this.storage.set('stationID', station.id);
+    
+
+  }
+}

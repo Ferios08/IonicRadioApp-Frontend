@@ -13,7 +13,8 @@ import { AuthResponse } from './auth-response';
   providedIn: 'root'
 })
 export class AuthService {
-  AUTH_SERVER_ADDRESS = 'http://localhost:1338';
+   AUTH_SERVER_ADDRESS = 'http://localhost:1338';
+  // AUTH_SERVER_ADDRESS = 'http://firas-chbiki.com:1338';
   authSubject = new BehaviorSubject(false);
 
   constructor(
@@ -58,7 +59,7 @@ export class AuthService {
     const newtime = {
       lastvu: '2025-11-10'
     };
-    console.log(noww);
+
     return this.httpClient.put(`${this.AUTH_SERVER_ADDRESS}/users/check/:id`, newtime).pipe(
       tap(async (res: AuthResponse) => {
 
