@@ -38,7 +38,6 @@ export class MoviePage implements OnInit {
     }).then(() => {
       this.moviesService.Moviebyid(this.movieid).subscribe(res => {
         if (res) {
-          console.log(res);
           this.movie = res;
         }
       }, err => {
@@ -61,7 +60,6 @@ export class MoviePage implements OnInit {
   }
   favourite() {
     this.favouriteService.addToFav(this.movieid).then((res) => {
-      console.log("add " + this.movieid)
       this.isFav = true;
       this.ngOnInit();
     });

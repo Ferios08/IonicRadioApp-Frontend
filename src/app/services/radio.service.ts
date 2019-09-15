@@ -24,7 +24,6 @@ export class RadioService {
   }
 
   getStationById(id): Observable<any> {
-    console.log( id);
     return this.httpClient.get(`${this.SERVER_ADDRESS}/stations/byid/${id}`);
   }
 }
