@@ -51,16 +51,22 @@ export class FavRadiosService {
     });
   }
 
-  unfavourite(filmId) {
-      return this.getAllFav().then((res) => {
-        if (res && res.indexOf(filmId) !== -1) {
-
-          res.splice(res.indexOf(filmId), 1);
-          this.storage.set('favourites', res);
-          return res;
+  unfavourite(station) {
+    return this.getAllFav().then((res) => {
+      let cond = 0;
+      res.forEach(st => {
+        if (st.id === station.id) {
+          cond = res.indexOf(st);
         }
       });
 
-    }
+
+      res.splice(res.indexOf(cond), 1);
+      this.storage.set('favstations', res);
+      return res;
+
+    });
+
+  }
 
 }
