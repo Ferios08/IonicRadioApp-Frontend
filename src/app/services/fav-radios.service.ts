@@ -40,14 +40,18 @@ export class FavRadiosService {
 
   isFavourite(station) {
     return this.getAllFav().then((res) => {
-      let cond = 0;
-      res.forEach(st => {
-        if (st.id === station.id) {
-          cond += 1;
-        }
-      });
-      console.log(cond);
-      return (cond > 0);
+      if (res) {
+
+
+        let cond = 0;
+        res.forEach(st => {
+          if (st.id === station.id) {
+            cond += 1;
+          }
+        });
+        console.log(cond);
+        return (cond > 0);
+      }
     });
   }
 

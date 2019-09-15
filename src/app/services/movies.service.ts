@@ -13,8 +13,8 @@ import { Movie } from '../models/movie';
   providedIn: 'root'
 })
 export class MoviesService {
-  // AUTH_SERVER_ADDRESS = 'http://firas-chbiki.com:1338';
-   AUTH_SERVER_ADDRESS = 'http://localhost:1338';
+   AUTH_SERVER_ADDRESS = 'http://firas-chbiki.com:1338';
+  // AUTH_SERVER_ADDRESS = 'http://localhost:1338';
   token = '';
   headers = new HttpHeaders({
     Authorization: `Bearer ${this.token}`

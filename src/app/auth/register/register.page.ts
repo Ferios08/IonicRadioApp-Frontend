@@ -19,7 +19,8 @@ export class RegisterPage implements OnInit {
   user: any = {
     name: '',
     email: '',
-    password: ''
+    password: '',
+    address: 'Tunis'
   };
 
 
@@ -95,7 +96,7 @@ export class RegisterPage implements OnInit {
       if (res) {
         this.storage.set('user', JSON.stringify(res));
         this.storage.set('name', this.user.name);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/login']);
       }
     }, err => {
       this.alert(err.error.error);

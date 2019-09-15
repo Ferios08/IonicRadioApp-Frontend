@@ -20,18 +20,29 @@ export class CountryPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.storage.get('country').then((cou) => {
-      this.radiosService.getStationsof(cou).subscribe(res => {
-        this.stations = res;
+    this.loader(1000).then(() => {
+      this.storage.get('country').then((cou) => {
+        this.radiosService.getStationsof(cou).subscribe(res => {
+          this.stations = res;
 
+        });
       });
+    }).then(() => {
+      this.loadingController.dismiss();
     });
+
 
   }
   getStationID(station) {
     this.storage.set('stationID', station.id);
-
-
+  }
+  async loader(secs) {
+    const loading = await this.loadingController.create({
+      message: 'Please Wait',
+      duration: secs,
+      spinner: 'bubbles'
+    });
+    await loading.present();
   }
 
 }

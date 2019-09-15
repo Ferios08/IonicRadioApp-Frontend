@@ -20,16 +20,26 @@ export class SearchPage implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    this.radiosService.getCountries().subscribe(res => {
-      this.countries = res;
+    this.loader(2000).then(() => {
+      this.radiosService.getCountries().subscribe(res => {
+        this.countries = res;
+      });
+    }).then(() => {
+      this.loadingController.dismiss();
     });
+
 
   }
   getCountryName(country) {
     this.storage.set('country', country.name);
-
-
+  }
+  async loader(secs) {
+    const loading = await this.loadingController.create({
+      message: 'Please Wait',
+      duration: secs,
+      spinner: 'bubbles'
+    });
+    await loading.present();
   }
 
 }

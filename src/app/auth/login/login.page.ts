@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -26,7 +26,8 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     public alertController: AlertController,
-    private storage: Storage
+    private storage: Storage,
+    public loadingController: LoadingController,
 
   ) { }
 
@@ -48,19 +49,22 @@ export class LoginPage implements OnInit {
       email: formValue.email,
       password: formValue.pass
     };
-    // console.log(this.user);
 
-    this.authService.login(this.user).subscribe(res => {
-      // console.log(res);
-      if (res) {
-        this.storage.set('user', res);
-        this.storage.set('name', res.name)
-          .then(() => this.router.navigate(['/home/profile']));
+    this.loader(1000).then(() => {
+      this.authService.login(this.user).subscribe(res => {
+        if (res) {
+          this.storage.set('user', res);
+          this.storage.set('name', res.name)
+            .then(() => this.router.navigate(['/home/profile']));
+        }
+      }, err => {
+        this.alert(err.error.error);
       }
-    }, err => {
-      this.alert(err.error.error);
-    }
-    );
+      );
+    }).then(() => {
+      this.loadingController.dismiss();
+    })
+
 
   }
 
@@ -79,5 +83,12 @@ export class LoginPage implements OnInit {
   onSubmitForm() {
     this.login();
   }
-
+  async loader(secs) {
+    const loading = await this.loadingController.create({
+      message: 'Please Wait',
+      duration: secs,
+      spinner: 'bubbles'
+    });
+    await loading.present();
+  }
 }

@@ -13,8 +13,8 @@ import { AuthResponse } from './auth-response';
   providedIn: 'root'
 })
 export class AuthService {
-   AUTH_SERVER_ADDRESS = 'http://localhost:1338';
-  // AUTH_SERVER_ADDRESS = 'http://firas-chbiki.com:1338';
+  // AUTH_SERVER_ADDRESS = 'http://localhost:1338';
+   AUTH_SERVER_ADDRESS = 'http://firas-chbiki.com:1338';
   authSubject = new BehaviorSubject(false);
 
   constructor(
@@ -26,7 +26,7 @@ export class AuthService {
     return this.httpClient.post<AuthResponse>(`${this.AUTH_SERVER_ADDRESS}/users`, user).pipe(
       tap(async (res: AuthResponse) => {
         if (res) {
-          this.login(user);
+          // this.login(user);
           // await this.storage.set('ACCESS_TOKEN', res.token);
           // await this.storage.set('EXPIRES_IN', res.expires_in);
           this.authSubject.next(true);
@@ -76,6 +76,9 @@ export class AuthService {
     await this.storage.remove('ACCESS_TOKEN');
     await this.storage.remove('EXPIRES_IN');
     await this.storage.remove('user');
+    await this.storage.remove('name');
+    await this.storage.remove('country');
+    await this.storage.remove('stationID');
 
     this.authSubject.next(false);
   }

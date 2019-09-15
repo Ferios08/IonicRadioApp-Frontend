@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./favourite.page.scss'],
 })
 export class FavouritePage implements OnInit {
-stations: any;
+  stations: any;
   constructor(
     private storage: Storage,
     public loadingController: LoadingController,
@@ -20,18 +20,31 @@ stations: any;
     private router: Router,
     private favouriteService: FavRadiosService,
 
+
   ) { }
 
   ngOnInit() {
-    this.favouriteService.getAllFav().then((res) => {
-      this.stations = res;
-      console.log(this.stations);
+    this.loader(1000).then(() => {
+      this.favouriteService.getAllFav().then((res) => {
+        this.stations = res;
+        console.log(this.stations);
+      });
+    }).then(() => {
+      this.loadingController.dismiss();
     });
-  }
- 
-  getStationID(station) {
-    this.storage.set('stationID', station.id);
-    
 
   }
+
+  getStationID(station) {
+    this.storage.set('stationID', station.id);
+  }
+  async loader(secs) {
+    const loading = await this.loadingController.create({
+      message: 'Please Wait',
+      duration: secs,
+      spinner: 'bubbles'
+    });
+    await loading.present();
+  }
 }
+

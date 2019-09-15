@@ -19,7 +19,7 @@ export class HomePage implements OnInit {
     lastvu: '',
     avatar: ''
   };
-  pagename: any;
+  pagename = '';
   now = new Date();
 
 
@@ -66,12 +66,12 @@ export class HomePage implements OnInit {
         {
           title: 'Movies',
           url: '/home/profile',
-          icon: 'home'
+          icon: 'film'
         },
         {
           title: 'Radios',
           url: '/home/data',
-          icon: 'analytics'
+          icon: 'radio'
         },
         {
           title: 'Setting',

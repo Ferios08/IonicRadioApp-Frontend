@@ -77,7 +77,7 @@ export class MyPagePage implements OnInit {
         this.movies = res;
       }
     }, err => {
-      this.alert('Error', err.error.error);
+      this.alert('Alert', err.error.error);
     }
     );
   }
